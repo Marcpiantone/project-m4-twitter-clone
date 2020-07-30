@@ -2,6 +2,8 @@ import React from "react";
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
+import { CurrentUserProvider } from "./components/CurrentUserContext";
+
 import GlobalStyles from "./components/GlobalStyles";
 import HomeFeed from "./components/HomeFeed";
 import Notifications from "./components/Notifications";
@@ -12,7 +14,7 @@ import Sidebar from "./components/Sidebar";
 
 function App() {
   return (
-    <>
+    <CurrentUserProvider>
       <Router>
         <GlobalStyles />
         <Sidebar />
@@ -34,7 +36,7 @@ function App() {
           </Route>
         </Switch>
       </Router>
-    </>
+    </CurrentUserProvider>
   );
 }
 
