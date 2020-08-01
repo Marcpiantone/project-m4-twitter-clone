@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 
 import styled from "styled-components";
@@ -7,59 +7,116 @@ import { COLORS } from "./constants";
 import { ReactComponent as Logo } from "../assets/logo.svg";
 
 import { FiHome, FiUser, FiBell, FiBookmark } from "react-icons/fi";
+import { CurrentUserContext } from "./CurrentUserContext";
 
 const Sidebar = () => {
-  return (
-    <UL>
-      <LI>
-        <NavigationLink exact to="/">
-          <HoverDiv>
-            <StyledLogo />
-          </HoverDiv>
-        </NavigationLink>
-      </LI>
-      <LI>
-        <NavigationLink exact to="/">
-          <HoverDiv>
-            <LinkLogo>
-              <FiHome />
-            </LinkLogo>
-            Home
-          </HoverDiv>
-        </NavigationLink>
-      </LI>
-      <LI>
-        <NavigationLink exact to="/profileabc">
-          <HoverDiv>
-            <LinkLogo>
-              <FiUser />
-            </LinkLogo>
-            Profile
-          </HoverDiv>
-        </NavigationLink>
-      </LI>
-      <LI>
-        <NavigationLink exact to="/notifications">
-          <HoverDiv>
-            <LinkLogo>
-              <FiBell />
-            </LinkLogo>
-            Notifications
-          </HoverDiv>
-        </NavigationLink>
-      </LI>
-      <LI>
-        <NavigationLink exact to="/bookmarks">
-          <HoverDiv>
-            <LinkLogo>
-              <FiBookmark />
-            </LinkLogo>
-            Bookmarks
-          </HoverDiv>
-        </NavigationLink>
-      </LI>
-    </UL>
-  );
+  const { currentUser, status } = useContext(CurrentUserContext);
+  if (status === "idle") {
+    return (
+      <UL>
+        <LI>
+          <NavigationLink exact to="/">
+            <HoverDiv>
+              <StyledLogo />
+            </HoverDiv>
+          </NavigationLink>
+        </LI>
+        <LI>
+          <NavigationLink exact to="/">
+            <HoverDiv>
+              <LinkLogo>
+                <FiHome />
+              </LinkLogo>
+              Home
+            </HoverDiv>
+          </NavigationLink>
+        </LI>
+        <LI>
+          <NavigationLink exact to={`/${currentUser.profile.handle}`}>
+            <HoverDiv>
+              <LinkLogo>
+                <FiUser />
+              </LinkLogo>
+              Profile
+            </HoverDiv>
+          </NavigationLink>
+        </LI>
+        <LI>
+          <NavigationLink exact to="/notifications">
+            <HoverDiv>
+              <LinkLogo>
+                <FiBell />
+              </LinkLogo>
+              Notifications
+            </HoverDiv>
+          </NavigationLink>
+        </LI>
+        <LI>
+          <NavigationLink exact to="/bookmarks">
+            <HoverDiv>
+              <LinkLogo>
+                <FiBookmark />
+              </LinkLogo>
+              Bookmarks
+            </HoverDiv>
+          </NavigationLink>
+        </LI>
+      </UL>
+    );
+  } else {
+    return (
+      <UL>
+        <LI>
+          <NavigationLink exact to="/">
+            <HoverDiv>
+              <StyledLogo />
+            </HoverDiv>
+          </NavigationLink>
+        </LI>
+        <LI>
+          <NavigationLink exact to="/">
+            <HoverDiv>
+              <LinkLogo>
+                <FiHome />
+              </LinkLogo>
+              Home
+            </HoverDiv>
+          </NavigationLink>
+        </LI>
+        <LI>
+          <span>
+            {/* ASK SCOTT !!! */}
+            <HoverDiv>
+              <LinkLogo>
+                <FiUser />
+              </LinkLogo>
+              Profile
+            </HoverDiv>
+          </span>
+        </LI>
+        <LI>
+          <NavigationLink exact to="/notifications">
+            <HoverDiv>
+              <LinkLogo>
+                <FiBell />
+              </LinkLogo>
+              Notifications
+            </HoverDiv>
+          </NavigationLink>
+        </LI>
+        <LI>
+          <NavigationLink exact to="/bookmarks">
+            <HoverDiv>
+              <LinkLogo>
+                <FiBookmark />
+              </LinkLogo>
+              Bookmarks
+            </HoverDiv>
+          </NavigationLink>
+        </LI>
+      </UL>
+    );
+  }
 };
 
 const UL = styled.ul`

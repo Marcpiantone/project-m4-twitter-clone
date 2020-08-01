@@ -3,9 +3,16 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import Sidebar from "./components/Sidebar";
 
+import {
+  CurrentUserProvider,
+  CurrentUserContext,
+} from "./components/CurrentUserContext";
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <CurrentUserProvider>
+      <App />
+    </CurrentUserProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
