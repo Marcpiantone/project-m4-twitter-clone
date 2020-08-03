@@ -24,9 +24,6 @@ const HomeFeed = () => {
     return tweets[id];
   };
 
-  console.log(tweetArray);
-  console.log(typeof tweets);
-
   if (feedState === "idle") {
     return (
       <ul>

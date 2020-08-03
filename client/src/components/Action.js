@@ -2,18 +2,23 @@ import React from "react";
 
 import styled from "styled-components";
 import { COLORS } from "./constants";
+import ScaleIn from "./ScaleIn";
 
-const Action = ({ color, children }) => {
-  console.log(children);
-  console.log(color);
+const Action = ({ color, children, num }) => {
   return (
     <ActionWrapper>
+      {/* <ScaleIn> NEED TO FIX THIS ONCLICK*/}
       <ActionButton color={color}>{children}</ActionButton>
+      {num !== 0 ? <span>{num}</span> : <span></span>}
     </ActionWrapper>
   );
 };
 
-const ActionWrapper = styled.div``;
+const ActionWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  color: ${COLORS.grey};
+`;
 
 const ActionButton = styled.div`
   border-radius: 50%;
