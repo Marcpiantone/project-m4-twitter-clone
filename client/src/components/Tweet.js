@@ -7,6 +7,8 @@ import { FiRepeat } from "react-icons/fi";
 import styled from "styled-components";
 import { COLORS } from "./constants";
 
+import { Status, Divider } from "./GlobalStyles";
+
 import ActionBar from "./ActionBar";
 
 const Tweet = ({ tweetId, tweet }) => {
@@ -20,14 +22,16 @@ const Tweet = ({ tweetId, tweet }) => {
 
   return (
     <LI>
-      <Content>
+      <Content to={`/tweet/${tweetId}`}>
         {tweet.retweetFrom !== undefined && (
           <RetweetedBy>
             <FiRepeat />
             <pre> </pre> {tweet.retweetFrom.displayName} remeowed
           </RetweetedBy>
         )}
-        <Name to="/">{tweet.author.displayName}</Name>
+        <Name to={`/tweet/${tweetId}`} id={tweetId}>
+          {tweet.author.displayName}
+        </Name>
         <TweetInfos>
           <Handle> @{tweet.author.handle} </Handle>
           <TweetedOn>· {tweetedOn}</TweetedOn>
@@ -52,11 +56,12 @@ const Tweet = ({ tweetId, tweet }) => {
 const LI = styled.li`
   border-left: solid 1px ${COLORS.greyish};
   border-right: solid 1px ${COLORS.greyish};
+  padding: 15px 15px 0px 15px;
 `;
 
-const Content = styled.div`
+const Content = styled(NavLink)`
   width: 700px;
-  padding: 15px 15px 0px 15px;
+  padding: 0px 15px 0px 15px;
 `;
 
 const RetweetedBy = styled.div`
@@ -81,11 +86,6 @@ const Handle = styled.span``;
 
 const TweetedOn = styled.span``;
 
-const Status = styled.p`
-  margin-top: 8px;
-  margin-bottom: 8px;
-`;
-
 const Media = styled.div`
   margin-bottom: 8px;
 `;
@@ -93,12 +93,6 @@ const Media = styled.div`
 const ImgMedia = styled.img`
   border-radius: 20px;
   max-width: 670px;
-`;
-
-const Divider = styled.div`
-  margin-top: 10px;
-  height: 1px;
-  background: ${COLORS.greyish};
 `;
 
 export default Tweet;

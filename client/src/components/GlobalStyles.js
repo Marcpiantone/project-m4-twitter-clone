@@ -1,4 +1,6 @@
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
+
+import { COLORS } from "./constants";
 
 export default createGlobalStyle`
     *,
@@ -70,4 +72,16 @@ export default createGlobalStyle`
     #root {
         display:flex;
     }
+`;
+
+export const Status = styled.p`
+  color: black;
+  margin-top: 8px;
+  margin-bottom: 8px;
+`;
+
+export const Divider = styled.div`
+  margin-top: 10px;
+  height: 1px;
+  background: ${COLORS.greyish};
 `;

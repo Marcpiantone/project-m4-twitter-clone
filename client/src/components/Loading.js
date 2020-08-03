@@ -6,8 +6,19 @@ import { COLORS } from "./constants";
 import { FiLoader } from "react-icons/fi";
 
 const Loading = () => {
-  return <StyledLoader />;
+  return (
+    <Wrapper>
+      <StyledLoader />
+    </Wrapper>
+  );
 };
+
+const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+`;
 
 const spin = keyframes`
   from {

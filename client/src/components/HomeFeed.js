@@ -13,7 +13,6 @@ const HomeFeed = () => {
       .then((data) => {
         setFeed(data);
         setFeedState("idle");
-        console.log(data);
       });
   }, []);
 
