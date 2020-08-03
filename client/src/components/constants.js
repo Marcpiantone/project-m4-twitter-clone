@@ -1,8 +1,10 @@
 export const COLORS = {
-  // Bright purple:
   primary: "hsl(258deg, 100%, 50%)",
   hover: "hsl(258deg, 100%, 95%)",
   greyish: "hsl(0deg, 0%, 80%)",
   grey: "hsl(0deg, 0%, 50%)",
-  // Add more colors as needed!
+  commentButton: "hsl(203, 78%, 49%)",
+  retweetButton: "hsl(147, 79%, 42%)",
+  likeButton: "hsl(341, 75%, 51%)",
+  shareButton: "hsl(203, 78%, 49%)",
 };

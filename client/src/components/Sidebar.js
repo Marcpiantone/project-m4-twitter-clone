@@ -90,7 +90,7 @@ const Sidebar = () => {
               <LinkLogo>
                 <FiUser />
               </LinkLogo>
-              Profile
+              HELP, SCOTT !
             </HoverDiv>
           </span>
         </LI>

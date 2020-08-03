@@ -2,11 +2,14 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { format } from "date-fns";
 
-import styled, { keyframes } from "styled-components";
+import { FiRepeat } from "react-icons/fi";
+
+import styled from "styled-components";
 import { COLORS } from "./constants";
 
+import ActionBar from "./ActionBar";
+
 const Tweet = ({ tweetId, tweet }) => {
-  console.log();
   const tweetedOn = format(new Date(tweet.timestamp.split("T")[0]), "MMM do");
   console.log(
     tweet.timestamp.split("T")[0] +
@@ -14,22 +17,32 @@ const Tweet = ({ tweetId, tweet }) => {
       tweetedOn +
       " WHY, SCOTT ?"
   );
+
   return (
     <LI>
       <Content>
+        {tweet.retweetFrom !== undefined && (
+          <RetweetedBy>
+            <FiRepeat />
+            <pre> </pre> {tweet.retweetFrom.displayName} remeowed
+          </RetweetedBy>
+        )}
         <Name to="/">{tweet.author.displayName}</Name>
         <TweetInfos>
-          <Handle>@{tweet.author.handle} </Handle>
+          <Handle> @{tweet.author.handle} </Handle>
           <TweetedOn>· {tweetedOn}</TweetedOn>
         </TweetInfos>
         <Status>{tweet.status}</Status>
-        {tweet.media.map((media) => {
-          if (media.type === "img") {
-            return <ImgMedia src={media.url} alt="brokenLink" />;
-          } else {
-            return <span>Media unrecognized</span>;
-          }
-        })}
+        <Media>
+          {tweet.media.map((media) => {
+            if (media.type === "img") {
+              return <ImgMedia src={media.url} alt="brokenLink" />;
+            } else {
+              return <span>Media unrecognized</span>;
+            }
+          })}
+        </Media>
+        <ActionBar />
         <Divider />
       </Content>
     </LI>
@@ -46,8 +59,17 @@ const Content = styled.div`
   padding: 15px 15px 0px 15px;
 `;
 
+const RetweetedBy = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 2px;
+  font-size: 0.85em;
+  color: ${COLORS.grey};
+`;
+
 const Name = styled(NavLink)`
   font-weight: bolder;
+  font-size: 1.1em;
   color: black;
 `;
 
@@ -60,19 +82,21 @@ const Handle = styled.span``;
 const TweetedOn = styled.span``;
 
 const Status = styled.p`
+  margin-top: 8px;
   margin-bottom: 8px;
 `;
 
-const Media = styled.div``;
+const Media = styled.div`
+  margin-bottom: 8px;
+`;
 
 const ImgMedia = styled.img`
-  margin-bottom: 8px;
   border-radius: 20px;
   max-width: 670px;
 `;
 
 const Divider = styled.div`
-  top: 10px;
+  margin-top: 10px;
   height: 1px;
   background: ${COLORS.greyish};
 `;
