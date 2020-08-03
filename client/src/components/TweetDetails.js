@@ -6,9 +6,10 @@ import { format } from "date-fns";
 
 import { COLORS } from "./constants";
 
-import { Status, Divider } from "./GlobalStyles";
+import { Status, Divider, Avatar } from "./GlobalStyles";
 
 import Loading from "./Loading";
+import Error from "./Error";
 import ActionBar from "./ActionBar";
 
 const TweetDetails = ({ id }) => {
@@ -16,18 +17,22 @@ const TweetDetails = ({ id }) => {
   const [detailsState, setdetailsState] = useState("loading");
 
   useEffect(() => {
-    fetch(`/api${window.location.pathname}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setDetails(data);
-        setdetailsState("idle");
-      });
+    const fetchDetails = async () => {
+      try {
+        const res = await fetch(`/api${window.location.pathname}`);
+        await res.json().then((data) => {
+          setDetails(data);
+          setdetailsState("idle");
+        });
+      } catch (err) {
+        console.log(err);
+        setdetailsState("error");
+      }
+    };
+    fetchDetails();
   }, []);
 
   if (detailsState === "idle") {
-    console.log(details);
-    console.log(details.tweet.author);
-
     const tweetedOn = format(
       new Date(details.tweet.timestamp),
       "H:mm a · MMM d yyyy"
@@ -37,7 +42,7 @@ const TweetDetails = ({ id }) => {
         <AuthorInfos>
           <Avatar src={details.tweet.author.avatarSrc} />
           <NameHandle>
-            <Name to={`/tweet/${details.tweet.author.handle}`}>
+            <Name to={`/  ${details.tweet.author.handle}`}>
               {details.tweet.author.displayName}
             </Name>
             <Handle>@ {details.tweet.author.handle}</Handle>
@@ -62,6 +67,10 @@ const TweetDetails = ({ id }) => {
         <Divider />
       </Content>
     );
+  }
+
+  if (detailsState === "error") {
+    return <Error />;
   } else {
     return <Loading />;
   }
@@ -77,11 +86,6 @@ const Content = styled.div`
 const AuthorInfos = styled.div`
   display: flex;
   align-items: center;
-`;
-
-const Avatar = styled.img`
-  border-radius: 50%;
-  height: 50px;
 `;
 
 const NameHandle = styled.div`

@@ -7,7 +7,7 @@ import { FiRepeat } from "react-icons/fi";
 import styled from "styled-components";
 import { COLORS } from "./constants";
 
-import { Status, Divider } from "./GlobalStyles";
+import { Status, Divider, Avatar } from "./GlobalStyles";
 
 import ActionBar from "./ActionBar";
 
@@ -29,13 +29,17 @@ const Tweet = ({ tweetId, tweet }) => {
             <pre> </pre> {tweet.retweetFrom.displayName} remeowed
           </RetweetedBy>
         )}
-        <Name to={`/tweet/${tweetId}`} id={tweetId}>
-          {tweet.author.displayName}
-        </Name>
-        <TweetInfos>
-          <Handle> @{tweet.author.handle} </Handle>
-          <TweetedOn>· {tweetedOn}</TweetedOn>
-        </TweetInfos>
+        <Author>
+          <Avatar src={tweet.author.avatarSrc} />
+          <Name to={`/tweet/${tweetId}`} id={tweetId}>
+            {tweet.author.displayName}
+          </Name>
+          <pre> </pre>
+          <TweetInfos>
+            <Handle>@{tweet.author.handle} </Handle>
+            <TweetedOn>· {tweetedOn}</TweetedOn>
+          </TweetInfos>
+        </Author>
         <Status>{tweet.status}</Status>
         <Media>
           {tweet.media.map((media) => {
@@ -72,7 +76,13 @@ const RetweetedBy = styled.div`
   color: ${COLORS.grey};
 `;
 
+const Author = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 const Name = styled(NavLink)`
+  margin-left: 8px;
   font-weight: bolder;
   font-size: 1.1em;
   color: black;

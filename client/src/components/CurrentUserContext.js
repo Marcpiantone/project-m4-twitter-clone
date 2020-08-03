@@ -7,12 +7,17 @@ export const CurrentUserProvider = ({ children }) => {
   const [status, setStatus] = useState("loading");
 
   useEffect(() => {
-    fetch(`/api/me/profile`)
-      .then((res) => res.json())
-      .then((data) => {
-        setCurrentUser(data);
-        setStatus("idle");
-      });
+    try {
+      fetch(`/api/me/profile`)
+        .then((res) => res.json())
+        .then((data) => {
+          setCurrentUser(data);
+          setStatus("idle");
+        });
+    } catch (err) {
+      console.log(err);
+      setStatus("error");
+    }
   }, []);
 
   return (
