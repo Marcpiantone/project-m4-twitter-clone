@@ -4,24 +4,25 @@ export const CurrentUserContext = createContext(null);
 
 export const CurrentUserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
-  const [status, setStatus] = useState("loading");
+  const [currentUserState, setCurrentUserState] = useState("loading");
   const [feed, setFeed] = useState("null");
   const [feedState, setFeedState] = useState("loading");
 
+  const handleUserRefresh = async () => {
+    try {
+      const res = await fetch(`/api/me/profile`);
+      await res.json().then((data) => {
+        setCurrentUser(data);
+        setCurrentUserState("idle");
+      });
+    } catch (err) {
+      console.log(err);
+      setCurrentUserState("error");
+    }
+  };
+
   useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const res = await fetch(`/api/me/profile`);
-        await res.json().then((data) => {
-          setCurrentUser(data);
-          setStatus("idle");
-        });
-      } catch (err) {
-        console.log(err);
-        setStatus("error");
-      }
-    };
-    fetchUser();
+    handleUserRefresh();
   }, []);
 
   const handleFeedRefresh = async () => {
@@ -45,12 +46,13 @@ export const CurrentUserProvider = ({ children }) => {
     <CurrentUserContext.Provider
       value={{
         currentUser,
-        status,
-        setStatus,
+        currentUserState,
+        setCurrentUserState,
         feed,
         feedState,
         setFeedState,
         handleFeedRefresh,
+        handleUserRefresh,
       }}
     >
       {children}

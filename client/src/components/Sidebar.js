@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
 import styled from "styled-components";
@@ -10,8 +10,9 @@ import { FiHome, FiUser, FiBell, FiBookmark } from "react-icons/fi";
 import { CurrentUserContext } from "./CurrentUserContext";
 
 const Sidebar = () => {
-  const { currentUser, status } = useContext(CurrentUserContext);
-  if (status === "idle") {
+  const { currentUser, currentUserState } = useContext(CurrentUserContext);
+
+  if (currentUserState === "idle") {
     return (
       <UL>
         <LI>
@@ -85,12 +86,11 @@ const Sidebar = () => {
         </LI>
         <LI>
           <span>
-            {/* ASK SCOTT !!! */}
             <HoverDiv>
               <LinkLogo>
                 <FiUser />
               </LinkLogo>
-              HELP, SCOTT !
+              Profile
             </HoverDiv>
           </span>
         </LI>

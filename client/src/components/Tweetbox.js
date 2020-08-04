@@ -6,11 +6,16 @@ import { CurrentUserContext } from "./CurrentUserContext";
 import { COLORS } from "./constants";
 
 import { Divider, Avatar, LI } from "./GlobalStyles";
+import Error from "./Error";
+import Loading from "./Loading";
 
 const Tweetbox = () => {
-  const { handleFeedRefresh, setFeedState } = useContext(CurrentUserContext);
-
-  console.log(setFeedState);
+  const {
+    handleFeedRefresh,
+    setFeedState,
+    currentUser,
+    currentUserState,
+  } = useContext(CurrentUserContext);
 
   const [textLeft, setTextLeft] = useState(280);
   const [newStatus, setNewStatus] = useState("");
@@ -34,27 +39,35 @@ const Tweetbox = () => {
     setTextLeft(280 - newStatus.length);
   }, [newStatus]);
 
-  return (
-    <LI>
-      <Inputbox
-        type="text"
-        placeholder="What's happening?"
-        value={newStatus}
-        onChange={(ev) => {
-          setNewStatus(ev.target.value);
-        }}
-      />
-      <AlignRight>
-        <Counter inactive>{textLeft}</Counter>
-        {textLeft === 280 || textLeft < 0 ? (
-          <Meow disabled> Meow</Meow>
-        ) : (
-          <Meow onClick={() => handleNewStatus(newStatus)}> Meow</Meow>
-        )}
-      </AlignRight>
-      <Divider />
-    </LI>
-  );
+  if (currentUserState === "idle") {
+    return (
+      <LI>
+        <Avatar src={currentUser.profile.avatarSrc} />
+        <Inputbox
+          type="text"
+          placeholder="What's happening?"
+          value={newStatus}
+          onChange={(ev) => {
+            setNewStatus(ev.target.value);
+          }}
+        />
+        <AlignRight>
+          <Counter inactive>{textLeft}</Counter>
+          {textLeft === 280 || textLeft < 0 ? (
+            <Meow disabled> Meow</Meow>
+          ) : (
+            <Meow onClick={() => handleNewStatus(newStatus)}> Meow</Meow>
+          )}
+        </AlignRight>
+        <Divider />
+      </LI>
+    );
+  }
+  if (currentUserState === "error") {
+    return <Error />;
+  } else {
+    return <Loading />;
+  }
 };
 
 const Inputbox = styled.input`
