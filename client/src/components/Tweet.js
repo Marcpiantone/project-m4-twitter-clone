@@ -7,19 +7,12 @@ import { FiRepeat } from "react-icons/fi";
 import styled from "styled-components";
 import { COLORS } from "./constants";
 
-import { Status, Divider, Avatar } from "./GlobalStyles";
+import { Status, Divider, Avatar, LI } from "./GlobalStyles";
 
 import ActionBar from "./ActionBar";
 
 const Tweet = ({ tweetId, tweet }) => {
-  const tweetedOn = format(new Date(tweet.timestamp.split("T")[0]), "MMM do");
-  console.log(
-    tweet.timestamp.split("T")[0] +
-      " does not compare to " +
-      tweetedOn +
-      " WHY, SCOTT ?"
-  );
-
+  const tweetedOn = format(new Date(tweet.timestamp), "MMM do");
   return (
     <LI>
       <Content to={`/tweet/${tweetId}`}>
@@ -56,12 +49,6 @@ const Tweet = ({ tweetId, tweet }) => {
     </LI>
   );
 };
-
-const LI = styled.li`
-  border-left: solid 1px ${COLORS.greyish};
-  border-right: solid 1px ${COLORS.greyish};
-  padding: 15px 15px 0px 15px;
-`;
 
 const Content = styled(NavLink)`
   width: 700px;

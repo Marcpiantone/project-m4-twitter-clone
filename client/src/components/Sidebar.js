@@ -142,7 +142,7 @@ const HoverDiv = styled.div`
   border-radius: 50px;
   &:hover {
     color: ${COLORS.primary};
-    background-color: ${COLORS.hover};
+    background-color: ${COLORS.secondary};
   }
 `;
 

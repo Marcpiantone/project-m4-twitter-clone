@@ -96,7 +96,7 @@ const tweets = {
     authorHandle: "diplomog",
     timestamp: "2020-01-12T04:31:00+00:00",
     sortedTimestamp: "2020-01-12T04:31:00+00:00",
-    likedBy: [],
+    likedBy: ["diplomog"],
     retweetedBy: [],
     status: `Sometimes I wonder... am I playing with the ribbon or is the ribbon playing with me?
 Maybe a more diplomatic approach will work 🤔`,
@@ -154,8 +154,8 @@ My highlight has been coming back to work with my very own Palmy HQ 🤩`,
     authorHandle: "giantcat9",
     timestamp: "2020-01-09T13:20:00+00:00",
     sortedTimestamp: "2020-01-09T13:20:00+00:00",
-    likedBy: [],
-    retweetedBy: [],
+    likedBy: ["diplomog"],
+    retweetedBy: ["diplomog"],
     status: `Olifant / Rooikat`,
     media: [
       {
@@ -248,7 +248,7 @@ https://morrisanimalrefuge.org/adopt/storm `,
     timestamp: "2020-01-11T08:59:00+00:00",
     sortedTimestamp: "2020-01-11T08:59:00+00:00",
     likedBy: ["giantcat9"],
-    retweetedBy: [],
+    retweetedBy: ["giantcat9"],
     status: `"Scotland Forever!"
 by Lady Butler / 1881`,
     media: [

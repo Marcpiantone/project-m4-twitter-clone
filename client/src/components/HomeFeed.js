@@ -1,8 +1,9 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import Loading from "./Loading";
 import Tweet from "./Tweet";
 import Error from "./Error";
+import Tweetbox from "./Tweetbox";
 
 const HomeFeed = () => {
   const [feed, setFeed] = useState("null");
@@ -33,13 +34,16 @@ const HomeFeed = () => {
 
   if (feedState === "idle") {
     return (
-      <ul>
-        {tweetArray.map((id) => {
-          console.log(getTweetById(id));
-          const tweet = getTweetById(id);
-          return <Tweet tweetId={id} tweet={tweet} />;
-        })}
-      </ul>
+      <>
+        <ul>
+          <Tweetbox />
+          {tweetArray.map((id) => {
+            console.log(getTweetById(id));
+            const tweet = getTweetById(id);
+            return <Tweet tweetId={id} tweet={tweet} />;
+          })}
+        </ul>
+      </>
     );
   }
   if (feedState === "error") {

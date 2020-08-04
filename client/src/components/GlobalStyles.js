@@ -85,7 +85,14 @@ export const Divider = styled.div`
   height: 1px;
   background: ${COLORS.greyish};
 `;
+
 export const Avatar = styled.img`
   border-radius: 50%;
   height: 50px;
+`;
+
+export const LI = styled.li`
+  border-left: solid 1px ${COLORS.greyish};
+  border-right: solid 1px ${COLORS.greyish};
+  padding: 15px 15px 0px 15px;
 `;

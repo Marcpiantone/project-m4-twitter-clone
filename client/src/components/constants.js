@@ -1,6 +1,7 @@
 export const COLORS = {
   primary: "hsl(258deg, 100%, 50%)",
-  hover: "hsl(258deg, 100%, 95%)",
+  secondary: "hsl(258deg, 100%, 95%)",
+  darker: "hsl(258deg, 100%, 35%)",
   greyish: "hsl(0deg, 0%, 80%)",
   grey: "hsl(0deg, 0%, 50%)",
   commentButton: "hsl(203, 78%, 49%)",
