@@ -95,4 +95,6 @@ export const LI = styled.li`
   border-left: solid 1px ${COLORS.greyish};
   border-right: solid 1px ${COLORS.greyish};
   padding: 15px 15px 0px 15px;
+  max-width: 800px;
+  width: 100%;
 `;

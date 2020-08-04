@@ -51,7 +51,6 @@ const Tweet = ({ tweetId, tweet }) => {
 };
 
 const Content = styled(NavLink)`
-  width: 700px;
   padding: 0px 15px 0px 15px;
 `;
 

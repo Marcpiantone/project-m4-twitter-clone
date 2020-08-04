@@ -14,6 +14,7 @@ import Bookmarks from "./components/Bookmarks";
 import TweetDetails from "./components/TweetDetails";
 import Profile from "./components/Profile";
 import Sidebar from "./components/Sidebar";
+import FeedPage from "./components/FeedPage";
 
 function App() {
   const { currentUser } = useContext(CurrentUserContext);
@@ -23,7 +24,7 @@ function App() {
       <Sidebar />
       <Switch>
         <Route exact path="/">
-          <HomeFeed />
+          <FeedPage />
         </Route>
         <Route exact path="/notifications">
           <Notifications />

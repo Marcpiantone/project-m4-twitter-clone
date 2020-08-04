@@ -1,11 +1,17 @@
 import React, { useContext, useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 
+import { CurrentUserContext } from "./CurrentUserContext";
+
 import { COLORS } from "./constants";
 
 import { Divider, Avatar, LI } from "./GlobalStyles";
 
 const Tweetbox = () => {
+  const { handleFeedRefresh, setFeedState } = useContext(CurrentUserContext);
+
+  console.log(setFeedState);
+
   const [textLeft, setTextLeft] = useState(280);
   const [newStatus, setNewStatus] = useState("");
 
@@ -17,7 +23,11 @@ const Tweetbox = () => {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-    }).then(setNewStatus(""));
+    }).then(() => {
+      setNewStatus("");
+      setFeedState("loading");
+      handleFeedRefresh();
+    });
   };
 
   useEffect(() => {
@@ -48,11 +58,10 @@ const Tweetbox = () => {
 };
 
 const Inputbox = styled.input`
-  outline: none;
   border: none;
-  max-width: 100%;
   width: 100%;
   font-size: 1.2em;
+  outline: none;
 `;
 
 const Counter = styled.span`
@@ -86,6 +95,7 @@ const AlignRight = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  width: 100%;
 `;
 
 export default Tweetbox;
