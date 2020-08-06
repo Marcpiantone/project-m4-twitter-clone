@@ -43,9 +43,14 @@ const Tweet = ({ tweetId, tweet }) => {
             }
           })}
         </Media>
-        <ActionBar numRetweets={tweet.numRetweets} numLikes={tweet.numLikes} />
-        <Divider />
       </Content>
+      <ActionBar
+        tweet={tweet}
+        tweetID={tweetId}
+        numRetweets={tweet.numRetweets}
+        numLikes={tweet.numLikes}
+      />
+      <Divider />
     </LI>
   );
 };

@@ -59,6 +59,7 @@ const Tweetbox = () => {
             <Meow onClick={() => handleNewStatus(newStatus)}> Meow</Meow>
           )}
         </AlignRight>
+
         <Divider />
       </LI>
     );
@@ -93,6 +94,7 @@ const Meow = styled.button`
   font-size: 1.3em;
   padding: 8px;
   cursor: pointer;
+  transition: all ease 300ms;
   &:hover {
     background-color: ${COLORS.darker};
   }

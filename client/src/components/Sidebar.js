@@ -14,110 +14,121 @@ const Sidebar = () => {
 
   if (currentUserState === "idle") {
     return (
-      <UL>
-        <LI>
-          <NavigationLink exact to="/">
-            <HoverDiv>
-              <StyledLogo />
-            </HoverDiv>
-          </NavigationLink>
-        </LI>
-        <LI>
-          <NavigationLink exact to="/">
-            <HoverDiv>
-              <LinkLogo>
-                <FiHome />
-              </LinkLogo>
-              Home
-            </HoverDiv>
-          </NavigationLink>
-        </LI>
-        <LI>
-          <NavigationLink exact to={`/${currentUser.profile.handle}`}>
-            <HoverDiv>
-              <LinkLogo>
-                <FiUser />
-              </LinkLogo>
-              Profile
-            </HoverDiv>
-          </NavigationLink>
-        </LI>
-        <LI>
-          <NavigationLink exact to="/notifications">
-            <HoverDiv>
-              <LinkLogo>
-                <FiBell />
-              </LinkLogo>
-              Notifications
-            </HoverDiv>
-          </NavigationLink>
-        </LI>
-        <LI>
-          <NavigationLink exact to="/bookmarks">
-            <HoverDiv>
-              <LinkLogo>
-                <FiBookmark />
-              </LinkLogo>
-              Bookmarks
-            </HoverDiv>
-          </NavigationLink>
-        </LI>
-      </UL>
+      <Static>
+        <UL>
+          <LI>
+            <NavigationLink exact to="/">
+              <HoverDiv>
+                <StyledLogo />
+              </HoverDiv>
+            </NavigationLink>
+          </LI>
+          <LI>
+            <NavigationLink exact to="/">
+              <HoverDiv>
+                <LinkLogo>
+                  <FiHome />
+                </LinkLogo>
+                Home
+              </HoverDiv>
+            </NavigationLink>
+          </LI>
+          <LI>
+            <NavigationLink exact to={`/${currentUser.profile.handle}`}>
+              <HoverDiv>
+                <LinkLogo>
+                  <FiUser />
+                </LinkLogo>
+                Profile
+              </HoverDiv>
+            </NavigationLink>
+          </LI>
+          <LI>
+            <NavigationLink exact to="/notifications">
+              <HoverDiv>
+                <LinkLogo>
+                  <FiBell />
+                </LinkLogo>
+                Notifications
+              </HoverDiv>
+            </NavigationLink>
+          </LI>
+          <LI>
+            <NavigationLink exact to="/bookmarks">
+              <HoverDiv>
+                <LinkLogo>
+                  <FiBookmark />
+                </LinkLogo>
+                Bookmarks
+              </HoverDiv>
+            </NavigationLink>
+          </LI>
+        </UL>
+      </Static>
     );
   } else {
     return (
-      <UL>
-        <LI>
-          <NavigationLink exact to="/">
-            <HoverDiv>
-              <StyledLogo />
-            </HoverDiv>
-          </NavigationLink>
-        </LI>
-        <LI>
-          <NavigationLink exact to="/">
-            <HoverDiv>
-              <LinkLogo>
-                <FiHome />
-              </LinkLogo>
-              Home
-            </HoverDiv>
-          </NavigationLink>
-        </LI>
-        <LI>
-          <span>
-            <HoverDiv>
-              <LinkLogo>
-                <FiUser />
-              </LinkLogo>
-              Profile
-            </HoverDiv>
-          </span>
-        </LI>
-        <LI>
-          <NavigationLink exact to="/notifications">
-            <HoverDiv>
-              <LinkLogo>
-                <FiBell />
-              </LinkLogo>
-              Notifications
-            </HoverDiv>
-          </NavigationLink>
-        </LI>
-        <LI>
-          <NavigationLink exact to="/bookmarks">
-            <HoverDiv>
-              <LinkLogo>
-                <FiBookmark />
-              </LinkLogo>
-              Bookmarks
-            </HoverDiv>
-          </NavigationLink>
-        </LI>
-      </UL>
+      <Static>
+        {" "}
+        <UL>
+          <LI>
+            <NavigationLink exact to="/">
+              <HoverDiv>
+                <StyledLogo />
+              </HoverDiv>
+            </NavigationLink>
+          </LI>
+          <LI>
+            <NavigationLink exact to="/">
+              <HoverDiv>
+                <LinkLogo>
+                  <FiHome />
+                </LinkLogo>
+                Home
+              </HoverDiv>
+            </NavigationLink>
+          </LI>
+          <LI>
+            <span>
+              <HoverDiv>
+                <LinkLogo>
+                  <FiUser />
+                </LinkLogo>
+                Profile
+              </HoverDiv>
+            </span>
+          </LI>
+          <LI>
+            <NavigationLink exact to="/notifications">
+              <HoverDiv>
+                <LinkLogo>
+                  <FiBell />
+                </LinkLogo>
+                Notifications
+              </HoverDiv>
+            </NavigationLink>
+          </LI>
+          <LI>
+            <NavigationLink exact to="/bookmarks">
+              <HoverDiv>
+                <LinkLogo>
+                  <FiBookmark />
+                </LinkLogo>
+                Bookmarks
+              </HoverDiv>
+            </NavigationLink>
+          </LI>
+        </UL>
+      </Static>
     );
   }
 };
+
+const Static = styled.div`
+  height: 100vh;
+  position: sticky;
+  top: 0;
+`;
 
 const UL = styled.ul`
   margin: 30px;

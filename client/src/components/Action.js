@@ -4,20 +4,32 @@ import styled from "styled-components";
 import { COLORS } from "./constants";
 import ScaleIn from "./ScaleIn";
 
-const Action = ({ color, children, num }) => {
-  return (
-    <ActionWrapper>
-      {/* <ScaleIn> NEED TO FIX THIS ONCLICK*/}
-      <ActionButton color={color}>{children}</ActionButton>
-      {num !== 0 ? <span>{num}</span> : <span></span>}
-    </ActionWrapper>
-  );
+const Action = ({ color, children, num, onclick }) => {
+  if (onclick !== null) {
+    return (
+      <ActionWrapper onClick={() => onclick()}>
+        {/* <ScaleIn> NEED TO FIX THIS ONCLICK*/}
+        <ActionButton color={color}>{children}</ActionButton>
+        {num !== 0 ? <span>{num}</span> : <span></span>}
+      </ActionWrapper>
+    );
+  } else {
+    return (
+      <ActionWrapper>
+        {/* <ScaleIn> NEED TO FIX THIS ONCLICK*/}
+        <ActionButton color={color}>{children}</ActionButton>
+        {num !== 0 ? <span>{num}</span> : <span></span>}
+      </ActionWrapper>
+    );
+  }
 };
 
-const ActionWrapper = styled.div`
+const ActionWrapper = styled.button`
   display: flex;
   align-items: center;
   color: ${COLORS.grey};
+  background: none;
+  border: none;
 `;
 
 const ActionButton = styled.div`
