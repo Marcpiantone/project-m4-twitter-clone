@@ -42,15 +42,17 @@ const Tweetbox = () => {
   if (currentUserState === "idle") {
     return (
       <LI>
-        <Avatar src={currentUser.profile.avatarSrc} />
-        <Inputbox
-          type="text"
-          placeholder="What's happening?"
-          value={newStatus}
-          onChange={(ev) => {
-            setNewStatus(ev.target.value);
-          }}
-        />
+        <Center>
+          <Avatar src={currentUser.profile.avatarSrc} />
+          <Inputbox
+            type="text"
+            placeholder="What's happening?"
+            value={newStatus}
+            onChange={(ev) => {
+              setNewStatus(ev.target.value);
+            }}
+          />
+        </Center>
         <AlignRight>
           <Counter inactive>{textLeft}</Counter>
           {textLeft === 280 || textLeft < 0 ? (
@@ -71,10 +73,16 @@ const Tweetbox = () => {
   }
 };
 
+const Center = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 const Inputbox = styled.input`
   border: none;
   width: 100%;
   font-size: 1.2em;
+  margin-left: 5px;
   outline: none;
 `;
 

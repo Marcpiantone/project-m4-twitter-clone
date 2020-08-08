@@ -93,7 +93,8 @@ const Media = styled.div`
 
 const ImgMedia = styled.img`
   border-radius: 20px;
-  max-width: 670px;
+  max-width: 100%;
+  max-height: 100%;
 `;
 
 export default Tweet;
