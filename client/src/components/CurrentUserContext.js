@@ -21,16 +21,14 @@ export const CurrentUserProvider = ({ children }) => {
     }
   };
 
-  useEffect(() => {
-    handleUserRefresh();
-  }, []);
-
   const handleFeedRefresh = async () => {
+    console.log("Refreshing Feed");
     try {
       const res = await fetch(`/api/me/home-feed`);
       await res.json().then((data) => {
         setFeed(data);
         setFeedState("idle");
+        console.log("Feed Refreshed");
       });
     } catch (err) {
       console.log(err);
@@ -39,6 +37,7 @@ export const CurrentUserProvider = ({ children }) => {
   };
 
   useEffect(() => {
+    handleUserRefresh();
     handleFeedRefresh();
   }, []);
 

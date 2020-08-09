@@ -24,7 +24,7 @@ const Tweet = ({ tweetId, tweet }) => {
         )}
         <Author>
           <Avatar src={tweet.author.avatarSrc} />
-          <Name to={`/tweet/${tweetId}`} id={tweetId}>
+          <Name to={`/${tweet.author.handle}`} id={tweetId}>
             {tweet.author.displayName}
           </Name>
           <pre> </pre>

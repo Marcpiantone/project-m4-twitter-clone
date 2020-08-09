@@ -42,7 +42,7 @@ const TweetDetails = ({ id }) => {
         <AuthorInfos>
           <Avatar src={details.tweet.author.avatarSrc} />
           <NameHandle>
-            <Name to={`/  ${details.tweet.author.handle}`}>
+            <Name to={`/${details.tweet.author.handle}`}>
               {details.tweet.author.displayName}
             </Name>
             <Handle>@ {details.tweet.author.handle}</Handle>

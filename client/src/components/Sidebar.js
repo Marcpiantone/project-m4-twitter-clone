@@ -69,7 +69,6 @@ const Sidebar = () => {
   } else {
     return (
       <Static>
-        {" "}
         <UL>
           <LI>
             <NavigationLink exact to="/">
@@ -125,6 +124,7 @@ const Sidebar = () => {
 };
 
 const Static = styled.div`
+  border-right: solid 1px ${COLORS.greyish};
   height: 100vh;
   position: sticky;
   top: 0;

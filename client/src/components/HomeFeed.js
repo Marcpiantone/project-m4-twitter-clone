@@ -1,15 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
 
 import Loading from "./Loading";
 import Tweet from "./Tweet";
 import Error from "./Error";
-import Tweetbox from "./Tweetbox";
 
-import { CurrentUserContext } from "./CurrentUserContext";
-
-const HomeFeed = () => {
-  const { feed, feedState } = useContext(CurrentUserContext);
-
+const HomeFeed = ({ feed, feedState }) => {
   const tweetArray = feed.tweetIds;
   const tweets = feed.tweetsById;
 

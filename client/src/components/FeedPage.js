@@ -1,19 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import Tweetbox from "./Tweetbox";
 import HomeFeed from "./HomeFeed";
 import styled from "styled-components";
+import { CurrentUserContext } from "./CurrentUserContext";
+
+import { UL } from "./GlobalStyles";
 
 const FeedPage = () => {
+  const { feed, feedState } = useContext(CurrentUserContext);
   return (
     <UL>
       <Tweetbox />
-      <HomeFeed />
+      <HomeFeed feed={feed} feedState={feedState} />
     </UL>
   );
 };
-
-const UL = styled.ul`
-  width: 55%;
-`;
 
 export default FeedPage;
