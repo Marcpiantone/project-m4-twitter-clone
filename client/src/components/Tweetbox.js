@@ -54,7 +54,11 @@ const Tweetbox = () => {
           />
         </Center>
         <AlignRight>
-          <Counter inactive>{textLeft}</Counter>
+          {textLeft > 55 && <Counter className="normal">{textLeft}</Counter>}
+          {textLeft < 55 && textLeft > 0 && (
+            <Counter className="orange">{textLeft}</Counter>
+          )}
+          {textLeft < 0 && <Counter className="red">{textLeft}</Counter>}
           {textLeft === 280 || textLeft < 0 ? (
             <Meow disabled> Meow</Meow>
           ) : (
@@ -76,6 +80,7 @@ const Tweetbox = () => {
 const Center = styled.div`
   display: flex;
   align-items: center;
+  width: 100%;
 `;
 
 const Inputbox = styled.input`
@@ -90,6 +95,12 @@ const Counter = styled.span`
   color: ${COLORS.grey};
   font-size: 0.85em;
   margin-right: 10px;
+  &.orange {
+    color: orange;
+  }
+  &.red {
+    color: red;
+  }
 `;
 
 const Meow = styled.button`

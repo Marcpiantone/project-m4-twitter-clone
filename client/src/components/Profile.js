@@ -48,9 +48,8 @@ const Profile = (handle) => {
   };
 
   useEffect(() => {
-    fetchUser();
-    fetchProfileFeed();
-  }, [user]);
+    fetchUser().then(() => fetchProfileFeed());
+  }, []);
 
   console.log(userState);
   console.log(user);
